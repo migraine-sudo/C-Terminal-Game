@@ -8,6 +8,7 @@ Complate:Win32 MACOS Linux
 #include<iostream>
 #include"CSnake.h"
 #include"CMap.h"
+#include"CScore.h"
 #include<vector>
 
 #ifdef _WIN32
@@ -20,7 +21,7 @@ Complate:Win32 MACOS Linux
 #elif __APPLE__
 	#include <unistd.h>
 	#define clear() system("clear")
-	#define sleep() sleep(1);
+	#define sleep() usleep(100000);
 	
 #endif
 
@@ -33,33 +34,59 @@ int main(){
 	#ifdef  _WIN32
 	getch();
 	#endif
+	//init Score
+	CScore score(0);
+
 	//Init Map and Snake
 	CMap Map(sidescope); InitMap(Map);
 	vector<CSnake> snake={CSnake(0,0),randnum(Map)}; //the firest element is for direction
+	vector<CSnake> food={CSnake(0,0)};
 	Drawsnake(snake,4);
 	clear();
 	insertSnake(Map,snake);
-	traverse(Map);
+	//generate food 
+	food.insert(food.begin()+1,generate(snake,Map));
+	clear();
+	insertFood(Map,food);
+	traverse(Map,score);
+	
 
 	//Running
-	while(Judge(Map,snake)){
+	while(Judge(Map,snake,food,score)){
 		sleep(); 
+
 		vector<CSnake> store_snake=MoveSnake(snake);
 		//Make snakes more sensitive instead of delayed（*）
-		if(Control(snake,3)){//if receive a input
-			ReverseMoveSnake(snake,store_snake); //Restore the snake to its original state
-			MoveSnake(snake); //use the new direction to move
+		if(Control(snake,3)){						//if receive a input
+			ReverseMoveSnake(snake,store_snake); 	//Restore the snake to its original state
+			MoveSnake(snake); 						//use the new direction to move
 		}
 		//insert the snake into map
 		ClearMap(Map);
+		insertFood(Map,food);
 		insertSnake(Map,snake);
+		//if eat food,score++,delte the old_food,add new_food
+		if(ifeatfood){
+			food.insert(food.begin()+1,generate(snake,Map));
+			ClearMap(Map);
+			insertFood(Map,food);
+			insertSnake(Map,snake);
+			ifeatfood=false;
+		}
+
 		clear();
 		//draw
-		traverse(Map);		//Draw
+		traverse(Map,score);		//Draw
 	}
 
 	//END
+	usleep(2500000);
+	getchar();
 	clear();
+	if(score.getscore()>20)
+		cout<<"Congratulation!"<<"your score : "<<score.getscore()<<endl;
+	else
+		cout<<"Work hard, it will be better next time！"<<endl;
 	cout<<"Good Bye~"<<endl;
 	
 }

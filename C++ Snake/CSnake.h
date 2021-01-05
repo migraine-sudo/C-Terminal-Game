@@ -15,6 +15,7 @@ public:
 	CSnake(int x=0,int y=0):xa(x),ya(y){}
 	CSnake(int dir):direction(dir){}
 	CSnake& operator = (const CSnake&);
+	bool operator == (const CSnake&);
 	int xaxi() const{return xa;}
 	int yaxi() const{return ya;}
 	int getdir() const{return direction;}
@@ -24,10 +25,17 @@ private:
 	int direction=LEFT;
 }; 
 
+/*overload operator*/
 inline CSnake& CSnake::operator = (const CSnake& r){
 	this->xa=r.xa;
 	this->ya=r.ya;
 	return *this;
+}
+
+inline bool CSnake::operator == (const CSnake& r){
+	if(this->xa==r.xa && this->ya==r.ya)
+		return true;
+	else return false;
 }
 
 /*Make the snake longer,according the head of snake*/
@@ -116,10 +124,10 @@ inline bool Control(vector<CSnake> &snake,int time){
 		keyboard=getchar();
 		//cout<<"keyboard="<<keyboard<<endl;
 		switch(keyboard){
-			case 'A':snake[0].chadir(0);ifchange=true;break;//UP
-			case 'B':snake[0].chadir(1);ifchange=true;break;//DOWN
-			case 'D':snake[0].chadir(2);ifchange=true;break;//LEFT
-			case 'C':snake[0].chadir(3);ifchange=true;break;//RIGHT
+			case 'A':if(snake[0].getdir()!=0&&snake[0].getdir()!=1){snake[0].chadir(0);ifchange=true;}break;//UP
+			case 'B':if(snake[0].getdir()!=0&&snake[0].getdir()!=1){snake[0].chadir(1);ifchange=true;}break;//DOWN
+			case 'D':if(snake[0].getdir()!=2&&snake[0].getdir()!=3){snake[0].chadir(2);ifchange=true;}break;//LEFT
+			case 'C':if(snake[0].getdir()!=2&&snake[0].getdir()!=3){snake[0].chadir(3);ifchange=true;}break;//RIGHT
 			default:break;
 			}
 		}
@@ -127,11 +135,10 @@ inline bool Control(vector<CSnake> &snake,int time){
 	}
 	return ifchange;
 }
-
 #endif
 
 #include<iostream>
-
+//For Debug
 ostream&
 operator << (ostream& os,const CSnake snake){
 	return os<< '(' << snake.xaxi() << ',' << snake.yaxi() << ')'; 
