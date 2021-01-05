@@ -21,7 +21,8 @@ Complate:Win32 MACOS Linux
 #elif __APPLE__
 	#include <unistd.h>
 	#define clear() system("clear")
-	#define sleep() usleep(100000);
+	#define sleep() usleep(100000)
+	#define setwindow() system("resize -s 28 95")
 	
 #endif
 
@@ -33,6 +34,8 @@ int main(){
 	cout << "[*]welcome to Snakes! Press Any keys to start!"<<endl;
 	#ifdef  _WIN32
 	getch();
+	#elif __APPLE__
+	setwindow();
 	#endif
 	//init Score
 	CScore score(0);

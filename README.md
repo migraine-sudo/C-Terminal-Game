@@ -8,7 +8,7 @@
 
 ```shell
 MAC OS:g++-9 main.cpp -o snake -std=c++11(IF MAC_OS，do not use clang to complie)
-Windows:Dev C++（-std=c++）
+Windows:Dev C++（-std=c++11）
 Linux:
 ```
 
