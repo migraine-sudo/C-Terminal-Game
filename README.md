@@ -14,7 +14,7 @@ Linux:
 
 **Effect demonstration:**
 
-![snake](https://gitee.com/p0kerface/blog_image_management/raw/master/uPic/snake.gif)
+![snake](https://media.giphy.com/media/KntQY8q2KSg2rIbxOE/giphy.gif) 
 
 [*source code link*](https://github.com/migraine-sudo/C-Terminal-Game/tree/master/C%2B%2B%20Snake)
 
