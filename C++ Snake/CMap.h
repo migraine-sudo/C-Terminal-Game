@@ -91,7 +91,8 @@ inline  void traverse(const CMap& map,const CScore &score){
 #include<vector>
 /*Insert Snake into bitMap according to vector snake*/
 inline void insertSnake(CMap& map,vector<CSnake> &snake){
-	int i=1;					//Attention:Element 0 is for Direction not the site
+	//int i=1;					//Attention:Element 0 is for Direction not the site
+	int i=0;
 	while(i<snake.size()){
 		if(snake[i].xaxi()>=0&&snake[i].yaxi()>=0) 
 			map.bitmap[snake[i].xaxi()][snake[i].yaxi()]='X';
@@ -105,8 +106,8 @@ inline void insertFood(CMap& map,vector<CSnake> &food){
 }
 /*check if the snake hint it self*/
 inline bool hintcheck(vector<CSnake> &snake){
-	for(vector<CSnake>::iterator iter=snake.begin()+2;iter!=snake.end();iter++){
-		if(snake[1].xaxi()==(*iter).xaxi()&&snake[1].yaxi()==(*iter).yaxi())
+	for(vector<CSnake>::iterator iter=snake.begin()+1;iter!=snake.end();iter++){
+		if(snake[0].xaxi()==(*iter).xaxi()&&snake[0].yaxi()==(*iter).yaxi())
 			return true;
 	}
 	return false;
@@ -119,15 +120,17 @@ inline bool Judge(CMap& map,vector<CSnake> &snake,vector<CSnake> &food,CScore &s
 	if(snake[i].xaxi()==0||snake[i].xaxi()==map.width()-1||snake[i].yaxi()==0||snake[i].yaxi()==map.length()-1){
 		return false;
 	}
-	if(snake[1]==food[1]){
+	if(snake[0]==food[1]){
 		score.changscore(score.getscore()+10);
-		Drawsnake(snake,1);
+		Addsnake(snake);
 		ifeatfood=true;
 	}
+	
 	if(hintcheck(snake)){
 		//cout<<"hint your self"<<endl;
 		return false;
 	}
+	
 	return true;
 }
 

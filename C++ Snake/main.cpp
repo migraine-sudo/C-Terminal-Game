@@ -29,6 +29,7 @@ Complate:Win32 MACOS Linux
 using namespace std;
 
 const int sidescope = 25; //need to be asure sidescope <500
+int CSnake::dirt=LEFT;   //static dirt test
 
 int main(){
 	cout << "[*]welcome to Snakes! Press Any keys to start!"<<endl;
@@ -42,7 +43,8 @@ int main(){
 
 	//Init Map and Snake
 	CMap Map(sidescope); InitMap(Map);
-	vector<CSnake> snake={CSnake(0,0),randnum(Map)}; //the firest element is for direction
+	//vector<CSnake> snake={CSnake(0,0),randnum(Map)}; //the firest element is for direction
+	vector<CSnake> snake={randnum(Map)}; 				//direction is static type
 	vector<CSnake> food={CSnake(0,0)};
 	Drawsnake(snake,4);
 	clear();
@@ -52,6 +54,7 @@ int main(){
 	clear();
 	insertFood(Map,food);
 	traverse(Map,score);
+	usleep(200000);
 	
 
 	//Running
