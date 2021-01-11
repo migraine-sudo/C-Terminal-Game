@@ -45,12 +45,13 @@ int main(){
 	CMap Map(sidescope); InitMap(Map);
 	//vector<CSnake> snake={CSnake(0,0),randnum(Map)}; //the firest element is for direction
 	vector<CSnake> snake={randnum(Map)}; 				//direction is static type
-	vector<CSnake> food={CSnake(0,0)};
+	//vector<CSnake> food={CSnake(0,0)};
+	vector<CSnake> food;
 	Drawsnake(snake,4);
 	clear();
 	insertSnake(Map,snake);
 	//generate food 
-	food.insert(food.begin()+1,generate(snake,Map));
+	food.insert(food.begin(),generate(snake,Map));
 	clear();
 	insertFood(Map,food);
 	traverse(Map,score);
@@ -73,7 +74,7 @@ int main(){
 		insertSnake(Map,snake);
 		//if eat food,score++,delte the old_food,add new_food
 		if(ifeatfood){
-			food.insert(food.begin()+1,generate(snake,Map));
+			food.insert(food.begin(),generate(snake,Map));
 			ClearMap(Map);
 			insertFood(Map,food);
 			insertSnake(Map,snake);
