@@ -17,7 +17,10 @@ Complate:Win32 MACOS Linux
 	#define clear() system("cls")
 	#define sleep() Sleep(5 * 100);
 #elif __linux__
-	#define clear() system("reset")
+	#include <unistd.h>
+	#define clear() system("clear")
+	#define sleep() usleep(100000)
+	#define setwindow() system("resize -s 28 95")
 #elif __APPLE__
 	#include <unistd.h>
 	#define clear() system("clear")
