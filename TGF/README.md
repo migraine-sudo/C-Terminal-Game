@@ -46,5 +46,5 @@
 
 ### Develop Log:
 
-**2020.1.12-1x:**build general framework
+**2020.1.12-1x:** build general framework
 
