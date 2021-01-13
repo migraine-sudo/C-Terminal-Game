@@ -2,7 +2,7 @@
 
 > Committed to building a C++ programming framework for terminal games, and at the same time for learning design patterns.
 
-**Author:Migraine-sudo **
+**Author:Migraine-sudo**
 
 > **Q:how to use this framework**
 >
@@ -23,7 +23,7 @@
 - clear_term(): clear the termianl screen
 - Set windows() :set the size of terminal window (for example setwindow(28,95))
 
-**TGF_Map.h : A template class,help developers to create a map of game more quick **
+**TGF_Map.h : A template class,help developers to create a map of game more quick**
 
 - TGF_Map::Length(): get length of map
 - TGF_Map::width() :get width of map
