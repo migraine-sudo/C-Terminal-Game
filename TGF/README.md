@@ -74,12 +74,3 @@
 ### Develop Log:
 
 **2020.1.12-1x:** build general framework
-
-​								X
-
-(1,2) (2,3)				X    (1,2) (2,1)			X			(1,2) (0,1)
-
-x						X											X
-
-​	xxxx
-
