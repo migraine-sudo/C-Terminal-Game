@@ -8,5 +8,6 @@
 #include "TGF_MemberList.h"
 #include "TGF_Observer.h"
 #include "TGF_ControlPanel.h"
+#include "TGF_Metrononme.h"
 
 #endif

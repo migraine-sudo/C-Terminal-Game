@@ -48,6 +48,7 @@ public:
 
 protected:
     char **bitmap; //store the bits of map
+
 private:
     int map_len, map_wid;
 };

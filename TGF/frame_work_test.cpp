@@ -15,13 +15,13 @@ int main()
 
     //Init
     setwindow(28, 95); //set window's size
-    //clear_term();      //clean the terminal
+    clear_term();      //clean the terminal
 
     /*create a player*/
     Player_Unit unit(10, 12); //Create One Player's Unit（Player_Unit <-- TGF_Member）
     Player players(unit);     //Assemble the Player's Body(Player <-- TGF_MemberList)
     //or TGF_UserList<TGF_User> userlist(unit);
-    players.GeneralMode(Line);
+    players.GeneralModel(Line);
 
     /*create a map*/
     Snake_Map<Player_Unit> snake_map(len); //Create a Map (Snake_Map <-- TGF_Map)
@@ -29,6 +29,11 @@ int main()
 
     /*init keyboard*/
     Keyboard k;
+
+    /*init Metronome*/
+    TGF_Metrononme &metro = TGF_Metrononme::getInstance();
+    metro.setinterval(20);
+
     while (1)
     {
         /*
@@ -41,9 +46,17 @@ int main()
         if(k.recv() == DOWN)
             cout<< "DOWN";
             */
-        players.MoveModel(Linear);
+        if (metro.pat()) //control the action frame
+        {
+            players.MoveModel(Linear);
+            snake_map.insert(players, 'X');
+            metro.quicker();
+        }
 
+        players.MoveModel(ROTATE);
         snake_map.insert(players, 'X');
+
+        clear_term();
         cout << snake_map; //Debug
     }
 }

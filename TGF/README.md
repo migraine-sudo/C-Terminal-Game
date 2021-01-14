@@ -6,7 +6,7 @@
 
 > **Q:how to use this framework**
 >
-> **A:add #include"TGF_lib.h" ahead of  your cpp code** 
+> **A:add #include"TGF_lib.h" ahead of  your cpp code and compile** 
 
 ### API Document
 
@@ -36,15 +36,50 @@
 
 - TGF_Member::xaxi() :get the x axis of  member
 - TGF_Member::yaxi() :get the y axis of  member
-
 - TGF_Member:: chagxa():change x axis
 - TGF_Member:: chagya():change y axis
+- Player_Unit: interit from TGF_Member,as the smallest part of a member/role
 
-**TGF_MemberList.h**
+**TGF_MemberList.h : to create ,control the role or object of the game**
 
-- 
+- MMDODEL:Linear FALL ROTATE CHANDIRT OTHER (the model of movement)
+- GMODEL : Line (the model of generate member)
+- Player : inherit from TGF_MemberList and provide more funcitons
+- Player::PlayerList :use vector to store the Player_Unit
+- Player::direction
+- Player::getPlayer():return PlayerList
+- Player::getdirct():return direction
+- Player::MoveModel():set the movement function of the member
+- Player::MoveModel_Expand():for Expand
+- Player::GeneralModel():set the generate Model of the member
+- Player::GeneralModel_Expand()
+
+**TGF_Metrononme: a Singleton class,to help developer to control action frame**
+
+- TGF_Metrononme::getInstance() :return the static object of metro
+- **TGF_Metrononme::pat()** :this action must be use! to remind pg with pat after a constant time(interval)
+- TGF_Metrononme::interval : the interval between the each action 
+- TGF_Metrononme::set_Metrononme() 
+- TGF_Metrononme::get_Metrononme() 
+- TGF_Metrononme::setinterval()
+- TGF_Metrononme::quicker():make the action more quick(=set interval smaller )
+- TGF_Metrononme::lower():make the action more lower(=set interval bigger )
+
+### DEMO: Build a Smallest Game
+
+```c++
+
+```
 
 ### Develop Log:
 
 **2020.1.12-1x:** build general framework
+
+​								X
+
+(1,2) (2,3)				X    (1,2) (2,1)			X			(1,2) (0,1)
+
+x						X											X
+
+​	xxxx
 
